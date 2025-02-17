@@ -1,0 +1,1 @@
+{"name":"Local: Colliding Balls Problem","url":"d:\\CP_Practice\\Colliding Balls Problem.cpp","tests":[{"id":1731593470628,"input":"1 2\n1 2\n2 1\n1 2","output":"1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP_Practice\\Colliding Balls Problem.cpp","group":"local","local":true}

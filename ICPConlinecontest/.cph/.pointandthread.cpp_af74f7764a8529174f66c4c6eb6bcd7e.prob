@@ -1,0 +1,1 @@
+{"name":"Local: pointandthread","url":"d:\\CP_Practice\\ICPConlinecontest\\pointandthread.cpp","tests":[{"id":1731761917851,"input":"1\n3\n1 3 4\n1 11 111","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP_Practice\\ICPConlinecontest\\pointandthread.cpp","group":"local","local":true}

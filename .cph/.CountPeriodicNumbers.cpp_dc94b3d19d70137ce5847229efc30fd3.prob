@@ -1,0 +1,1 @@
+{"name":"Local: CountPeriodicNumbers","url":"d:\\CP_Practice\\CountPeriodicNumbers.cpp","tests":[{"id":1731742191391,"input":"2\n3 3\n1 10","output":"1\n6"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP_Practice\\CountPeriodicNumbers.cpp","group":"local","local":true}

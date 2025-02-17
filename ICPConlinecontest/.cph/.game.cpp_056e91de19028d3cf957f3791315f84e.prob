@@ -1,0 +1,1 @@
+{"name":"Local: game","url":"d:\\CP_Practice\\ICPConlinecontest\\game.cpp","tests":[{"id":1731762794199,"input":"4\n2 4 8 32 ","output":"0\n1\n1\n3\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP_Practice\\ICPConlinecontest\\game.cpp","group":"local","local":true}
