@@ -20,45 +20,31 @@ int main() {
     auto begin = chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int n; cin>>n;
-    vi v(n);
+     int n;cin>>n;
+     vll v(n);
     f(i,0,n) cin>>v[i];
-    int p; cin>>p; 
-    ll ck = accumulate(all(v),0LL);
-    ck = ck%p;
-    if(ck == 0) {
-        cout<<0<<'\n';
-        return 0;
-    }
-    ll mini = n + 1;
-    ll sum = 0;
-    map<ll, int> mp;
-    mp[0] = -1;
-    for (int i = 0; i < n; ++i) {
-        sum += v[i];
-        if (mp.find(sum - ck) != mp.end()) {
-            int j = mp[sum - ck];
-            if (!(j == -1 && i == n - 1)) {
-                int len = i - j;
-                if (len < mini) {
-                    mini = len;
-                }
-            }
+        int p; cin>>p;
+    ll ck = accumulate(all(v),0ll);
+     ck%=p;
+    if(ck==0){cout<<0<<'\n';return 0;}
+    unordered_map<int, int> modIndex;
+    modIndex[0] = -1;
+    int ans = n;  
+    ll prefix = 0;
+        for (int i = 0; i < n; i++) {
+        prefix = (prefix + v[i]) % p;
+        // (current prefix - previous prefix) % p == r
+        int target = (int)((prefix - ck + p) % p);
+        if (modIndex.find(target) != modIndex.end()) {
+            ans = min(ans, i - modIndex[target]);
         }
-        if (mp.find(sum) == mp.end()) {
-            mp[sum] = i;
-        }
+        modIndex[(int)prefix] = i;
     }
-   if(mini == n + 1) {
-        cout<<-1<<'\n';
-    } else {
-        cout<<mini<<'\n';
-    }
-
-  
-
+    
+    cout << (ans == n ? -1 : ans);
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cout << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
     return 0;
 }
+
