@@ -1,4 +1,3 @@
-// not passing all the testcases
 /**
  * writer:blinderchief
  **/
@@ -21,43 +20,45 @@ int main() {
     auto begin = chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    string s;cin>>s;
-    int n = s.size();
-    string temp = s;
-   if(n==1){
-    char c = s[0];
-    int an= c-'0';
-    an--;
-    char ans = an+'0';
-    cout<<ans<<'\n';
-    return 0;
-   }
-   else{
-    for(int i =0,j=n-1;i<j;i++,j--){
-      if(n%2==0){
-        if(i==(n/2)-1){
-          int cal = (s[i]-'0')-(s[j]-'0');
-          if(cal>0){
-            if(cal>5){
-              s[j] = --s[i];
-            }
-            else{
-              s[j] = s[i];
-            }
+    int t; cin >> t;
+    while (t--) {
+      int n;
+      cin>>n;
+      vi arr(n);
+      bool pos = false;
+      int lar=0;
+      for(int i=0;i<n;++i){
+           cin>>arr[i];
+           if(arr[i]>0){
+              pos = true;
+              if(arr[lar] < arr[i]) lar = i;
+           }
+      }
+      if(n==1){
+          cout<<0<<'\n';
+          continue;
+      }
+      if(pos == false){
+          cout<<n-1<<'\n';
+          for(int i=n-2;i>=0;--i)
+          {
+              cout<<i+1<<" "<<i+2<<'\n';
           }
-        }
       }
-      if(s[i]!=s[j]){
-        s[j]= s[i];
+      else{
+          cout<<5+2*(n-1)<<'\n';
+          for(int i=0;i<5;++i){
+              arr[lar] = 2*arr[lar];
+              cout<<lar+1<<" "<<lar+1<<'\n';
+          }
+          cout<<2<<" "<<lar+1<<"\n"<<2<<" "<<lar+1<<'\n';
+          for(int i=2;i<n;++i)
+          {
+              cout<<i+1<<" "<<i<<"\n"<<i+1<<" "<<i<<"\n";
+          }
       }
+      cout<<'\n';
     }
-    if(n%2!=0){
-      cout<<s<<'\n';
-   }
-   else {
-    cout<<s<<'\n';
-   }
-  }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cout << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
