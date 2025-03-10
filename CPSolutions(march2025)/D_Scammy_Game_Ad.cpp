@@ -89,18 +89,18 @@ int main(){
                 b = aL - aR;
                 g = 0;
             }
-            ll A_next = A, B_next = B, C_next = C;
-            ll newA, newB, newC;
-            if(A_next > 0){
-                newA = A_next * (1 + b) + B_next * b;
-                newB = A_next * (a - 1) + B_next * a;
-                newC = (A_next + B_next) * g + C_next;
+            ll Axt = A, Bxt = B, Cxt = C;
+            ll fina, finb, finc;
+            if(Axt > 0){
+                fina = Axt * (1 + b) + Bxt * b;
+                finb = Axt * (a - 1) + Bxt * a;
+                finc = (Axt + Bxt) * g + Cxt;
             } else{
-                newA = A_next + B_next * b;
-                newB = B_next * a;
-                newC = B_next * g + C_next;
+                fina = Axt + Bxt * b;
+                finb = Bxt * a;
+                finc = Bxt * g + Cxt;
             }
-            A = newA; B = newB; C = newC;
+            A = fina; B = finb; C = finc;
         }
         ll ans = A * 1 + B * 2 + C;
         cout << ans << "\n";

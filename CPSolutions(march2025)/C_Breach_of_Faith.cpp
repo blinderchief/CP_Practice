@@ -52,7 +52,7 @@ int main() {
         //     ck  = false;
         //   }
         // }
-        if (see > 0 && see <= 1e18 && !binary_search(all(v), see)){
+        if (see <= 1e18 && !binary_search(all(v), see)){
           cout <<see << " ";
           for (int i = 0; i < n; i++){
               cout << v[n + i] << " " << v[i] << " ";
