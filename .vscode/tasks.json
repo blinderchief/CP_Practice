@@ -1,4 +1,38 @@
-// {
+{
+  "tasks": [
+    {
+      "type": "Live Preview",
+      "workspacePath": "e:\\CP_Practice",
+      "problemMatcher": [],
+      "label": "Live Preview: Run Server",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "cppbuild",
+      "label": "C/C++: cl.exe build active file",
+      "command": "cl.exe",
+      "args": [
+        "-DLOCAL", 
+        "/Zi",
+        "/EHsc",
+        "/nologo",
+        "/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
+        "${file}"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$msCompile"
+      ],
+      "group": "build",
+      "detail": "compiler: cl.exe"
+    }
+  ]
+} // {
 //   "tasks": [
 //     {
 //       "type": "cppbuild",
