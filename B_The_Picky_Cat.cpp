@@ -42,7 +42,7 @@ signed main() {
                 cnt++;
             }
         } 
-        if(cnt>=n/2-1) yes
+        if(cnt+1>=ceil(n/2.0)) yes
         else no
     }
     auto end = chrono::high_resolution_clock::now();

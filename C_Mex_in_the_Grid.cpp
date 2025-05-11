@@ -31,7 +31,9 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
+        int n; cin>>n;
         
+
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
