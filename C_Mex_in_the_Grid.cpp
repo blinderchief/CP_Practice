@@ -32,7 +32,44 @@ signed main() {
     int t; cin >> t;
     while (t--) {
         int n; cin>>n;
-        
+        vector<vector<int>> dp(n,vector<int>(n,-1));
+        dp[0][0]=0;
+        int dx=1,dy=0,x=0,y=0;
+        f(i,0,n*n-1){
+            if(dx+x>=n||dy+y>=n || dy+y<0 || dx+x<0 || dp[x+dx][y+dy]!=-1){
+                if(dx==1&&dy==0)
+                {
+                    dx=0;
+                    dy=1;
+                }
+                else if(dx==0&&dy==1)
+                {
+                    dx=-1;
+                    dy=0;
+                }
+                else if(dx==-1&&dy==0)
+                {
+                    dx=0;
+                    dy=-1;
+                }
+                else
+                {
+                    dx=1;
+                    dy=0;
+                }
+            }
+            x+=dx;
+            y+=dy;
+            dp[x][y]=i+1;
+        }
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                cout<<n*n-1-dp[i][j]<<' ';
+            }
+            cout<<'\n';
+        }
 
     }
     auto end = chrono::high_resolution_clock::now();
