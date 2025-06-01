@@ -11,7 +11,7 @@ using namespace std;
 #define debug(...) "india"
 #endif
 */
-#define ll long long
+#define ll int
 #define f(i,a,n) for(int i = a; i < n; i++)
 #define vll vector<ll>
 #define pb push_back
@@ -31,15 +31,15 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-         ll n;
+    ll n;
     cin >> n;
     vll v(n);
     f(i,0,n) cin>>v[i];
-    vector<ll> mi(5001, INT_MAX);
+    vector<ll> dp(5001, INT_MAX);
     queue<ll> q;
     f(i,0,n)
     {
-        mi[v[i]] = 0;
+        dp[v[i]] = 0;
         q.push(v[i]);
     }
 
@@ -60,9 +60,8 @@ signed main() {
     if (cnt > 0)
     {
         cout << n - cnt << '\n';
-        continue;;
+        continue;
     }
-
     while (q.size())
     {
         ll val = q.front();
@@ -70,15 +69,15 @@ signed main() {
         for (auto x : v)
         {
             ll gc = __gcd(x,val);
-            if (mi[gc] == INT_MAX)
+            if (dp[gc] == INT_MAX)
             {
-                mi[gc] = 1 + mi[val];
+                dp[gc] = 1 +dp[val] ;
                 q.push(gc);
             }
         }
     }
-    cout << n + mi[g] - 1 <<'\n';
-
+    cout << n+dp[g]-1<<'\n';
+    
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
