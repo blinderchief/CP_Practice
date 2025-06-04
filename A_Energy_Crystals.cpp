@@ -10,7 +10,7 @@ using namespace std;
 #else
 #define debug(...) "india"
 #endif
-*/ 
+*/
 #define int long long
 #define f(i,a,n) for(int i = a; i < n; i++)
 #define vll vector<int>
@@ -31,20 +31,15 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-      int n; cin>>n;
-      vll v(n);
-      f(i,0,n) cin>>v[i];
-      int cnt =0;
-      int prev =0;
-      for(int i = 1; i < n;i++) {
-        if(v[prev]+1<v[i]) {
-          cnt++;
-          prev =i;
-          }
+      int x; cin>>x;
+      int len = 0;
+      int temp = x;
+        while (temp > 0) {
+          len++;
+            temp >>= 1;
+        }
+        cout << 2 * len + 1 << '\n';
     }
-          cout << cnt+1 << '\n';
-
-  }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';

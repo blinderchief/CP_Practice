@@ -10,9 +10,9 @@ using namespace std;
 #else
 #define debug(...) "india"
 #endif
-*/ 
-#define int long long
-#define f(i,a,n) for(int i = a; i < n; i++)
+*/
+#define ll long long
+#define f(i,a,n) for(size_t i = a; i < n; i++)
 #define vll vector<int>
 #define pb push_back
 #define po pop_back
@@ -26,27 +26,27 @@ using namespace std;
 const int mod = (int)(1e9 + 7);
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 signed main() {
-    auto begin = chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int t; cin >> t;
-    while (t--) {
-      int n; cin>>n;
-      vll v(n);
-      f(i,0,n) cin>>v[i];
-      int cnt =0;
-      int prev =0;
-      for(int i = 1; i < n;i++) {
-        if(v[prev]+1<v[i]) {
-          cnt++;
-          prev =i;
-          }
+    string s = "Python is a popular language. Python is versatile and easy to learn.";
+    vector<string> v;
+    string temp="";
+    for(size_t i=0; i<s.size(); i++){
+        if(s[i]!=' ' && s[i]!='.'){
+          temp+=s[i];
+        }
+        else if(!temp.empty()){
+          v.pb(temp);
+          temp ="";
+        }
     }
-          cout << cnt+1 << '\n';
-
-  }
-    auto end = chrono::high_resolution_clock::now();
-    auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
-   //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
+    map<string,int> mp;
+    for(size_t i=0;i<v.size();i++){
+    mp[v[i]]++;
+    }
+    for(auto &p:mp){
+        cout<<p.first<<"=>"<<p.second<<'\n'; 
+    }
+    cout<<'\n';
     return 0;
 }
