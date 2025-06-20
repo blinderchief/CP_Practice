@@ -37,7 +37,7 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-        int n,m;
+     int n,m;
     cin >> n >> m;
     int a[n][m];
     int ma = 0;
@@ -105,8 +105,6 @@ signed main() {
         continue;
     }
     cout << ma << '\n';
-
-       
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
