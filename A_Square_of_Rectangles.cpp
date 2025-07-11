@@ -22,7 +22,7 @@ using namespace std;
 #define yes cout << "YES" << '\n';
 #define sot(v) sort(all(v))
 #define sz(x) (int)(x).size()
-#define INF (int)9e18
+#define INF (int)9e18;
 const int mod = (int)(1e9 + 7);
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 signed main() {
@@ -31,32 +31,20 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-        int n ; cin>>n;
-        vll v(n);
-        f(i,0,n) cin>>v[i];
-        vll premin = v, suffmax = v;
-        for (int i = 1; i < n; i++)
-        {
-            premin[i] = min(premin[i], premin[i - 1]);
-        }
-        for (int i = n - 2; i >= 0; i--)
-        {
-            suffmax[i] = max(suffmax[i], suffmax[i + 1]);
-        }
-        string s = "";
-        f(i, 0, n)
-        {
-            if (v[i] == premin[i] || v[i] == suffmax[i])
-            {
-                s += '1';
-            }
-            else
-                s += '0';
-        }
-        cout << s << '\n';
-    }
+    int x1, y1, x2, y2, x3, y3;
+    cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+    bool ok = 0;
+    if (x1 == x2 && x2 == x3 && y1+y2+y3 == x1) ok = 1;
+    if (y1 == y2 && y2 == y3 && x1+x2+x3 == y1) ok = 1;
+    if (x2 == x3 && y2+y3 == y1 && x1+x2 == y1) ok = 1;
+    if (y2 == y3 && x2+x3 == x1 && y1+y2 == x1) ok = 1;
+    if (ok) yes else no
+      }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
     return 0;
 }
+
+
+
