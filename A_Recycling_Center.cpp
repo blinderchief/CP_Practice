@@ -1,3 +1,4 @@
+
 /**
  * writer:blinderchief
  **/
@@ -31,14 +32,18 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-      int a, b, c;
-      cin >> a >> b >> c;
-      int x = __gcd(a, b);
-      a /= x, b /= x;
-      if (a <= c && b <= c)
-        cout << 1 << '\n';
-      else
-        cout << 2 << '\n';
+        int n,c; cin>>n>>c;
+        int ans=n;
+        vll v(n);
+        f(i,0,n) cin>>v[i];
+        sot(v);
+        for(int i =n-1;i>=0;i--){
+          if(v[i]<=c){
+            ans--;
+            c/=2;
+          }
+        }
+        cout<<ans<<'\n';
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);

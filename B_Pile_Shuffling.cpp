@@ -31,15 +31,32 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-      int a, b, c;
-      cin >> a >> b >> c;
-      int x = __gcd(a, b);
-      a /= x, b /= x;
-      if (a <= c && b <= c)
-        cout << 1 << '\n';
-      else
-        cout << 2 << '\n';
+        int n;cin>>n;
+        vector<vector<int>> v(n,vector<int>(4));
+
+        f(i,0,n)
+ {
+  f(j,0,4){
+    cin>>v[i][j];
+  }
+}
+ // if I have ai > ci then somewhere there will be aj < cj   min number of operations - ans+=(ai-cj)
+ // if bi>di ans= ai+(bi-di)
+ int ans =0;
+ f(i,0,n){
+
+    if(v[i][1]>v[i][3]){
+      ans+=(v[i][0]+(v[i][1]-v[i][3]));
     }
+    else if(v[i][0]>v[i][2]){
+      ans+=(v[i][0]-v[i][2]);
+    }
+  
+ }
+ cout<<ans<<'\n';
+
+
+   }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';

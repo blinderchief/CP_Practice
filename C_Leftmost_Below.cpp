@@ -31,14 +31,33 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-      int a, b, c;
-      cin >> a >> b >> c;
-      int x = __gcd(a, b);
-      a /= x, b /= x;
-      if (a <= c && b <= c)
-        cout << 1 << '\n';
-      else
-        cout << 2 << '\n';
+        int n; cin>>n; 
+        vll v(n);
+        f(i,0,n){
+          cin>>v[i];
+        }
+      vll premin(n);
+      premin[0] = v[0];
+      for(int i =1;i<n;i++){
+        premin[i] = min(v[i],premin[i-1]); 
+      }
+      bool flag = false; 
+      for(int i =0;i<n;i++){
+        if(v[i]-premin[i]>=premin[i])
+        { 
+          flag = true;
+
+        }
+      }
+      if(flag){
+        no
+      }
+      else{
+        yes
+      }
+
+
+
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);

@@ -31,14 +31,11 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-      int a, b, c;
-      cin >> a >> b >> c;
-      int x = __gcd(a, b);
-      a /= x, b /= x;
-      if (a <= c && b <= c)
-        cout << 1 << '\n';
-      else
-        cout << 2 << '\n';
+        int n,k; cin>>n>>k;
+        if(n==1 || k==1 || (n==2 && k==2) ) {
+          no
+        }
+        else yes
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
