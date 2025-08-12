@@ -1,43 +1,68 @@
-/**
- * writer:blinderchief
- **/
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-/*
-#define LOCAL
-#ifdef LOCAL
-#include "algo/debug.h"
-#else
-#define debug(...) "india"
-#endif
-*/
-#define ll long long
-#define ull unsigned ll
-#define f(i,a,n) for(int i = a; i < n; i++)
-#define vll vector<ll>
-#define vi vector<int>
-#define pb emplace_back
-#define po pop_back
-#define me(a, x) memset(a, x, sizeof(a))
-#define all(v) (v).begin(), (v).end()
-#define rall(x) (x).rbegin(), (x).rend()
-#define no cout << "NO" << '\n';
-#define yes cout << "YES" << '\n';
-#define sot(v) sort(all(v))
-#define sz(x) (int)(x).size()
-#define inf 0x3f3f3f3f
-const int mod = (int)(1e9 + 7);
-mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
-signed main() {
-    auto begin = chrono::high_resolution_clock::now();
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-    int t; cin >> t;
-    while (t--) {
-        
+
+using ll = long long;
+const ll MOD = 1e9 + 7;
+const ll INF = 1e18;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    vector<ll> a = {1, 1};
+    vector<ll> mov = {0, 1};
+
+    ll amul = 1;
+    for (int i = 2; i < 35; i++)
+    {
+        a.push_back((i * amul) % MOD);
+        amul = (amul * a.back()) % MOD;
+        mov.push_back(min(INF, mov.back() * 2));
     }
-    auto end = chrono::high_resolution_clock::now();
-    auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
-   //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
-    return 0;
+
+    int tt;
+    cin >> tt;
+    vector<ll> ANS;
+
+    while (tt--)
+    {
+        int n;
+        ll k;
+        cin >> n >> k;
+
+        vector<ll> s(n);
+        for (int i = 0; i < n; i++)
+            cin >> s[i];
+
+        sort(s.begin(), s.end(), greater<ll>());
+
+        ll ans = 1;
+
+        while (k > 0 && !s.empty())
+        {
+            if (s.back() < (int)a.size() && mov[s.back()] <= k)
+            {
+                k -= mov[s.back()];
+                ans = (ans * a[s.back()]) % MOD;
+                s.pop_back();
+            }
+            else
+            {
+                ans = (ans * s.back()) % MOD;
+                ll x = s.back();
+                s.pop_back();
+                for (ll i = min((ll)a.size() - 1, x - 1); i >= 1; i--)
+                {
+                    s.push_back(i);
+                }
+                k -= 1;
+            }
+        }
+
+        ANS.push_back(ans % MOD);
+    }
+
+    for (ll val : ANS)
+        cout << val << "\n";
 }
