@@ -76,7 +76,9 @@
     "cmath": "cpp",
     "complex": "cpp",
     "chrono": "cpp",
-    "cstdlib": "cpp"
+    "cstdlib": "cpp",
+    "future": "cpp",
+    "system_error": "cpp"
   },
   "codeium.disableSupercomplete": true,
   "codeium.enableConfig": {
