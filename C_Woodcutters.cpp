@@ -29,44 +29,37 @@ using namespace std;
 const int mod = (int)(1e9 + 7);
 //Small observations-Think,read Problem again
 /*
-if all its subarrays of length k have the same sum
-make a map to cnt the number of elements 
-2->2
-1->2
-
-4 3 4 3
-
+Want maximum no of trees to fell
+ [xi - hi, xi] or [xi;xi + hi].
 */
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 signed main() {
     auto begin = chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int t; cin >> t;
-    while (t--) {
-      int n,k;cin>>n>>k;
-      vi v(n);
-      map<int, int> mp;
-      f(i, 0, n) cin >> v[i], mp[v[i]]++;
-      if (mp.size() > k)
-      {
-        cout << -1 << '\n';
-        continue;
-      }
-      cout << n * k << '\n';
-      for (int i = 0; i < n; i++)
-      {
-        for (auto x : mp)
-        {
-          cout << x.first << " ";
-        }
-        for (int i = 0; i < k - mp.size(); i++)
-        {
-          cout << 1 << " ";
-        }
-      }
-      cout << '\n';
+    int n; cin>>n;
+    vector<pair<ll,ll>>xh(n);
+    for(int i =0;i<n;i++){
+      cin>>xh[i].first>>xh[i].second;
     }
+    ll last = xh[0].first;
+    if(n==1){ cout<<1<<'\n'; return 0;}
+    ll ans =2; 
+    for(int i =1;i<n-1;i++){
+
+      if(xh[i].first-xh[i].second>last){
+        ans++;
+        last  = xh[i].first;
+      } 
+      else if(xh[i].first+xh[i].second<xh[i+1].first){
+        ans++;
+        last  =  xh[i].first+xh[i].second;
+      }
+      else{
+        last = xh[i].first;
+      }
+    }
+    cout<<ans<<'\n';
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';

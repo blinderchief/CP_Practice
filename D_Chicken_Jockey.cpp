@@ -29,13 +29,6 @@ using namespace std;
 const int mod = (int)(1e9 + 7);
 //Small observations-Think,read Problem again
 /*
-if all its subarrays of length k have the same sum
-make a map to cnt the number of elements 
-2->2
-1->2
-
-4 3 4 3
-
 */
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 signed main() {
@@ -44,29 +37,16 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-      int n,k;cin>>n>>k;
-      vi v(n);
-      map<int, int> mp;
-      f(i, 0, n) cin >> v[i], mp[v[i]]++;
-      if (mp.size() > k)
-      {
-        cout << -1 << '\n';
-        continue;
+     ll n; cin>>n;
+     vll v(n+1);
+     f(i,1,n+1)cin>>v[i];
+     vll dp(n+1);
+     dp[0]=0,dp[1]=v[1];
+      for(int i =2;i<=n;i++){
+        dp[i]= min(dp[i-1]+v[i]-1, dp[i-2]+v[i-1]+max(0LL, v[i]-(i-1)));
       }
-      cout << n * k << '\n';
-      for (int i = 0; i < n; i++)
-      {
-        for (auto x : mp)
-        {
-          cout << x.first << " ";
-        }
-        for (int i = 0; i < k - mp.size(); i++)
-        {
-          cout << 1 << " ";
-        }
-      }
-      cout << '\n';
-    }
+      cout<<dp[n]<<'\n'
+;    }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';

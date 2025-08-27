@@ -29,44 +29,16 @@ using namespace std;
 const int mod = (int)(1e9 + 7);
 //Small observations-Think,read Problem again
 /*
-if all its subarrays of length k have the same sum
-make a map to cnt the number of elements 
-2->2
-1->2
-
-4 3 4 3
-
 */
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 signed main() {
     auto begin = chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int t; cin >> t;
-    while (t--) {
-      int n,k;cin>>n>>k;
-      vi v(n);
-      map<int, int> mp;
-      f(i, 0, n) cin >> v[i], mp[v[i]]++;
-      if (mp.size() > k)
-      {
-        cout << -1 << '\n';
-        continue;
-      }
-      cout << n * k << '\n';
-      for (int i = 0; i < n; i++)
-      {
-        for (auto x : mp)
-        {
-          cout << x.first << " ";
-        }
-        for (int i = 0; i < k - mp.size(); i++)
-        {
-          cout << 1 << " ";
-        }
-      }
-      cout << '\n';
-    }
+    ll n; cin>>n;
+    string s  = "codeforces";
+    string ch= string(n-1,'s');
+    cout<<s+ch<<'\n';
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';

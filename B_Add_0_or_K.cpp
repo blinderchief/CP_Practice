@@ -1,3 +1,6 @@
+
+
+
 /**
  * writer:blinderchief
  **/
@@ -29,12 +32,6 @@ using namespace std;
 const int mod = (int)(1e9 + 7);
 //Small observations-Think,read Problem again
 /*
-if all its subarrays of length k have the same sum
-make a map to cnt the number of elements 
-2->2
-1->2
-
-4 3 4 3
 
 */
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
@@ -44,31 +41,45 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-      int n,k;cin>>n>>k;
-      vi v(n);
-      map<int, int> mp;
-      f(i, 0, n) cin >> v[i], mp[v[i]]++;
-      if (mp.size() > k)
-      {
-        cout << -1 << '\n';
-        continue;
-      }
-      cout << n * k << '\n';
-      for (int i = 0; i < n; i++)
-      {
-        for (auto x : mp)
-        {
-          cout << x.first << " ";
+       ll n, k;
+        cin >> n >> k;
+        
+        vll a(n);
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
         }
-        for (int i = 0; i < k - mp.size(); i++)
-        {
-          cout << 1 << " ";
-        }
-      }
-      cout << '\n';
+        
+        ll cur_g = 0;
+       
+            cur_g = a[0];
+            for (int i = 0; i < n; i++) {
+                cur_g = __gcd(cur_g, a[i]);
+                if (cur_g == 1) break;
+            }
+        
+        
+        if (cur_g > 1) {
+            for (int i = 0; i < n; i++) {
+                cout << a[i] << (i + 1 == n ? '\n' : ' ');
+            }
+        } else {
+            ll d = k + 1;
+            vll ans;
+            for (int i = 0; i < n; i++) {
+                ll m = a[i] % d;
+                ll fin = a[i] + m * k;
+                ans.pb(fin);
+            }
+            for (int i = 0; i < n; i++) {
+                cout << ans[i] << (i + 1 == n ? '\n' : ' ');
+            }
+        } 
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
     return 0;
 }
+
+
+

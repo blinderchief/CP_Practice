@@ -29,46 +29,47 @@ using namespace std;
 const int mod = (int)(1e9 + 7);
 //Small observations-Think,read Problem again
 /*
-if all its subarrays of length k have the same sum
-make a map to cnt the number of elements 
-2->2
-1->2
+ABCD
+DCBA
+ABCD
+DCBA
 
-4 3 4 3
-
+but we must change every old character of the grid so we have to consider that also 
 */
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 signed main() {
     auto begin = chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int t; cin >> t;
-    while (t--) {
-      int n,k;cin>>n>>k;
-      vi v(n);
-      map<int, int> mp;
-      f(i, 0, n) cin >> v[i], mp[v[i]]++;
-      if (mp.size() > k)
-      {
-        cout << -1 << '\n';
-        continue;
-      }
-      cout << n * k << '\n';
-      for (int i = 0; i < n; i++)
-      {
-        for (auto x : mp)
-        {
-          cout << x.first << " ";
+ int n,m;
+    cin >> n >> m;
+    vector<string> v(n);
+    for(int i=0;i<n;i++) cin >> v[i];
+
+    vector<string> res(n, string(m, ' '));
+
+    vector<char> set1 = {'A','B'};
+    vector<char> set2 = {'C','D'};
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            char old = v[i][j];
+            if((i+j)%2==0){
+                if(set1[0] != old) res[i][j] = set1[0];
+                else res[i][j] = set1[1];
+            } else {
+                if(set2[0] != old) res[i][j] = set2[0];
+                else res[i][j] = set2[1];
+            }
         }
-        for (int i = 0; i < k - mp.size(); i++)
-        {
-          cout << 1 << " ";
-        }
-      }
-      cout << '\n';
     }
+
+    for(int i=0;i<n;i++) {cout << res[i] << "\n";}
+
+  
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
     return 0;
 }
+

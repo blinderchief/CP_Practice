@@ -29,46 +29,53 @@ using namespace std;
 const int mod = (int)(1e9 + 7);
 //Small observations-Think,read Problem again
 /*
-if all its subarrays of length k have the same sum
-make a map to cnt the number of elements 
-2->2
-1->2
-
-4 3 4 3
+adding 2^(x-1)
+7 6 5 
 
 */
+vector<ll> sto(32);
+void precompute() {
+    sto[0] = 1;
+    for(int i = 1; i < 32; i++) {
+        sto[i] = 2LL * sto[i-1];
+    }
+}
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 signed main() {
     auto begin = chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     int t; cin >> t;
+    precompute();
     while (t--) {
-      int n,k;cin>>n>>k;
-      vi v(n);
-      map<int, int> mp;
-      f(i, 0, n) cin >> v[i], mp[v[i]]++;
-      if (mp.size() > k)
-      {
-        cout << -1 << '\n';
-        continue;
-      }
-      cout << n * k << '\n';
-      for (int i = 0; i < n; i++)
-      {
-        for (auto x : mp)
-        {
-          cout << x.first << " ";
+        int n; cin>>n;
+        vll v(n);
+        f(i,0,n) cin>>v[i];
+        if(is_sorted(all(v))){
+          cout<<0<<'\n';
         }
-        for (int i = 0; i < k - mp.size(); i++)
-        {
-          cout << 1 << " ";
+        else{
+          ll cnt=0,maxi=LLONG_MIN;
+              for(int i =0;i<n;i++){
+                if(v[i]>maxi){
+                     maxi =(maxi,v[i]);
+                }
+                if(v[i]<maxi){
+                  ll c =maxi-v[i];
+                  int cal = upper_bound(all(sto),c)-sto.begin();
+                  cnt = max(cnt,(ll)cal);
+               
+                }
+              }
+              cout<<cnt<<'\n';
         }
-      }
-      cout << '\n';
+        
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
     return 0;
 }
+
+
+
