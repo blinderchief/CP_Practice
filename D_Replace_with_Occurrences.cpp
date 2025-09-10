@@ -38,34 +38,41 @@ signed main() {
     int t; cin >> t;
     while (t--) {
         int n;cin>>n;
-        vi v(n);
-        map<int,int>mp;
-        f(i,0,n) {
-          cin>>v[i];
-          mp[v[i]]++;
+        vi ans(n), v(n);
+        vector<vector<int>> pos(n + 1);
+        f(i, 0, n)
+        {
+          cin >> v[i];
+          pos[v[i]].pb(i);
         }
-    bool cj = false;
-    for(auto k:mp){
-          if(k.first!=k.second){
-            cout<<-1<<'\n';
-            cj =true;
+        int c = 0;
+        bool flag = false;
+        for (int i = 1; i <= n; i++)
+        {
+          if (pos[i].size() % i != 0)
+          {
+            cout << -1 << '\n';
+            flag = true;
             break;
           }
-    } 
-    if(cj){
-      continue;
-    }
-    else{
-       f(i,0,n){
-      cout<<v[i]<<" ";
-    }
-    cout<<
-  '\n';
-    }
-   
 
-        
-
+          for (int j = 0; j < pos[i].size(); j++)
+          {
+            if (j % i == 0)
+            {
+              c++;
+            }
+            ans[pos[i][j]] = c;
+          }
+        }
+        if (flag)
+        {
+          continue;
+        }
+        f(i, 0, n)
+        {
+          cout << ans[i] << " \n"[i + 1 == n];
+        }
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
