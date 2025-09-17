@@ -37,50 +37,30 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-          int n, k;
-        cin >> n >> k;
-        vi a(n);
-        map<int,int>freq;
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
-            freq[a[i]]++;
+        int n ;cin>>n;
+        vi v(n),p(n+1);
+        f(i,0,n)cin>>v[i],p[v[i]]=i;
+        int l = p[n],r=p[n];
+        bool ck = false;
+        for(int i =n-1;i>0;i--){
+          if(p[i]==l-1){
+            l--;
+          }
+          else if(p[i]==r+1){
+            r++;
+          }
+          else{
+            ck = true;
+            no
+            break;
+          }
         }
-        bool flag = false;
-        vi see(n + 1, 0); 
-        for (int i = 1; i <= n;i++) {
-            if (freq[i] == 0) continue;
-            if (freq[i] % k != 0) {
-                flag = true;
-                break;
-            }
-          see[i] = freq[i] / k;
-        }
+        if(!ck) yes
+        
 
-        if (flag) {
-            cout << 0 << '\n';
-            continue;
-        }
-
-        vector<int> cur(n + 1, 0);
-        ll ans = 0;
-        int l = 0;
-
-        for (int r = 0; r < n; r++) {
-            cur[a[r]]++;
-            while (cur[a[r]] > see[a[r]]) {
-                cur[a[l]]--;
-                l++;
-            }
-            ans += (r - l + 1);
-            // cout<<ans<<'\n';
-        }
-
-        cout << ans << '\n';  
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
     return 0;
 }
-
-

@@ -37,50 +37,28 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-          int n, k;
-        cin >> n >> k;
-        vi a(n);
-        map<int,int>freq;
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
-            freq[a[i]]++;
+        int n,k;cin>>n>>k;
+        vll a(n),b(k);
+        f(i,0,n) cin>>a[i];
+        f(i,0,k) cin>>b[i];
+        sot(a);
+        sot(b);
+        int i = 0;int pt = n-1;
+        for(;i<k && i<n;i++){
+          if(b[i]==1) a[pt]=0, pt--;
+          else break;
         }
-        bool flag = false;
-        vi see(n + 1, 0); 
-        for (int i = 1; i <= n;i++) {
-            if (freq[i] == 0) continue;
-            if (freq[i] % k != 0) {
-                flag = true;
-                break;
-            }
-          see[i] = freq[i] / k;
+        while(i<k && pt>=0){
+          int idx = pt-b[i]+1;
+          if(idx>=0) a[idx] = 0;
+          pt  = idx-1; 
+          i++;
         }
-
-        if (flag) {
-            cout << 0 << '\n';
-            continue;
-        }
-
-        vector<int> cur(n + 1, 0);
-        ll ans = 0;
-        int l = 0;
-
-        for (int r = 0; r < n; r++) {
-            cur[a[r]]++;
-            while (cur[a[r]] > see[a[r]]) {
-                cur[a[l]]--;
-                l++;
-            }
-            ans += (r - l + 1);
-            // cout<<ans<<'\n';
-        }
-
-        cout << ans << '\n';  
-    }
+        ll ans = accumulate(all(a),0ll);
+        cout<<ans<<'\n';
+    } 
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
     return 0;
 }
-
-

@@ -29,6 +29,10 @@ using namespace std;
 const int mod = (int)(1e9 + 7);
 //Small observations-Think,read Problem again
 /*
+
+1 2 0 1 2 0
+
+1  0 0 1 
 */
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 signed main() {
@@ -37,50 +41,22 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-          int n, k;
-        cin >> n >> k;
-        vi a(n);
-        map<int,int>freq;
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
-            freq[a[i]]++;
+        int n;cin>>n;
+        vi v(n);
+        int sum =0;
+        f(i,0,n)cin>>v[i], v[i]%=3,sum+=v[i];
+       int temp  = (sum-(v[0]+v[1]))%3;
+       if((temp== v[0] && temp==v[1] && v[1] ==v[0]) || (temp!=v[0] && temp!=v[1] && v[1]!=v[0]))
+        {
+          cout<<"1 2\n";
         }
-        bool flag = false;
-        vi see(n + 1, 0); 
-        for (int i = 1; i <= n;i++) {
-            if (freq[i] == 0) continue;
-            if (freq[i] % k != 0) {
-                flag = true;
-                break;
-            }
-          see[i] = freq[i] / k;
+        else{
+          cout<<"0 0\n";
         }
 
-        if (flag) {
-            cout << 0 << '\n';
-            continue;
-        }
-
-        vector<int> cur(n + 1, 0);
-        ll ans = 0;
-        int l = 0;
-
-        for (int r = 0; r < n; r++) {
-            cur[a[r]]++;
-            while (cur[a[r]] > see[a[r]]) {
-                cur[a[l]]--;
-                l++;
-            }
-            ans += (r - l + 1);
-            // cout<<ans<<'\n';
-        }
-
-        cout << ans << '\n';  
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
    //cerr << "Time taken: " << elapsed.count() * 1e-9 << " seconds" << '\n';
     return 0;
 }
-
-
