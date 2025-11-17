@@ -37,42 +37,23 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-      int n;
-      cin >> n;
-      string s;
-      cin >> s;
-      auto temp = [&](string s)
-      {
-        vi pos;
-        int cnt = 0;
-
-        for (int i = 0; i < n; i++)
-        {
-          if (s[i] == 'a')
-          {
-            cnt++;
-            pos.pb(i - cnt);
+        int n;cin>>n;
+        vi v(n);
+        f(i,0,n){
+          cin>>v[i];
+        }
+        sot(v);
+        int c=0,ans=0;
+        for(int i =n-1;i>=0;i--){
+          if(v[i]==v[n-1]){
+            ans+=v[i];
+            c++;
+          }
+          else{
+            break;
           }
         }
-        int ans = 0;
-        sot(pos);
-        if (pos.size() > 0)
-        {
-          int mid = pos[pos.size() / 2];
-          for (int i = 0; i < pos.size(); i++)
-          {
-            ans += abs(mid - pos[i]);
-          }
-        }
-        return ans;
-      };
-      int ans = temp(s);
-      f(i, 0, n)
-      {
-        s[i] = 'a' + 'b' - s[i];
-      }
-      ans = min(ans, temp(s));
-      cout << ans << "\n";
+        cout<<ans/c<<'\n';
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);

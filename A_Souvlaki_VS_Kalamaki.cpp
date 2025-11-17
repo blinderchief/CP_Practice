@@ -29,6 +29,10 @@ using namespace std;
 const int mod = (int)(1e9 + 7);
 //Small observations-Think,read Problem again
 /*
+1 5 1 5 1
+1 1 1 5 5
+1 3 2 3 5
+1 2 3 3 5
 */
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 signed main() {
@@ -37,42 +41,17 @@ signed main() {
     cin.tie(0);
     int t; cin >> t;
     while (t--) {
-      int n;
-      cin >> n;
-      string s;
-      cin >> s;
-      auto temp = [&](string s)
-      {
-        vi pos;
-        int cnt = 0;
+        int n;cin>>n;
+        vi v(n);
+        f(i,0,n) cin>>v[i];
+        sot(v);
+        bool f = true;
+        for(int i =1;i+1<n;i+=2){
+          if(v[i+1]!=v[i])f = false;
+        }
+        if(!f) no
+        else yes 
 
-        for (int i = 0; i < n; i++)
-        {
-          if (s[i] == 'a')
-          {
-            cnt++;
-            pos.pb(i - cnt);
-          }
-        }
-        int ans = 0;
-        sot(pos);
-        if (pos.size() > 0)
-        {
-          int mid = pos[pos.size() / 2];
-          for (int i = 0; i < pos.size(); i++)
-          {
-            ans += abs(mid - pos[i]);
-          }
-        }
-        return ans;
-      };
-      int ans = temp(s);
-      f(i, 0, n)
-      {
-        s[i] = 'a' + 'b' - s[i];
-      }
-      ans = min(ans, temp(s));
-      cout << ans << "\n";
     }
     auto end = chrono::high_resolution_clock::now();
     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
