@@ -130,5 +130,6 @@
   "codeium.disableSupercomplete": true,
   "codeium.enableConfig": {
     "*": true
-  }
+  },
+  "editor.cursorBlinking": "blink"
 }
